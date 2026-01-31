@@ -276,3 +276,10 @@ footer{
 /* Swup-ready fade (does nothing unless you add swup later) */
 .transition-fade{transition:opacity .18s ease}
 html.is-animating .transition-fade{opacity:0}
+
+
+/* --- Nav responsiveness fix (override ordering issues) --- */
+@media (min-width: 768px){
+  .nav-links{display:flex}
+  .menu-btn{display:none}
+}
