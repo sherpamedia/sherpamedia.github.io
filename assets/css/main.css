@@ -702,3 +702,95 @@ html.is-animating .transition-fade{opacity:0}
   line-height: 1.6;
 }
 .custom-engine .btn{ margin-top: 12px; }
+
+
+/* ============ About Page ============ */
+
+.about-page{
+  padding-top: 140px;
+  padding-bottom: 90px;
+}
+
+.about-hero{
+  max-width: 900px;
+  margin-bottom: 56px;
+}
+
+.about-hero h1{
+  margin:0 0 18px 0;
+  font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.about-hero__lead{
+  font-size: 20px;
+  line-height: 1.6;
+  color: #ebebed;
+  opacity: .95;
+  max-width: 720px;
+}
+
+/* Content blocks */
+.about-block{
+  max-width: 860px;
+  margin-bottom: 56px;
+}
+
+.about-block h2{
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.about-block p{
+  margin: 0 0 14px 0;
+  line-height: 1.7;
+  color: #ebebed;
+  opacity: .92;
+}
+
+/* Values list */
+.values-list{
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0 0;
+  display: grid;
+  gap: 16px;
+}
+
+.values-list li{
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 16px 18px;
+  line-height: 1.6;
+}
+
+/* CTA */
+.about-cta{
+  margin-top: 64px;
+  padding: 42px 28px;
+  text-align: center;
+  border-radius: 12px;
+  background: rgba(6, 19, 47, .7);
+  border: 2px solid rgba(23,113,255,.45);
+}
+
+.about-cta h2{
+  margin: 0 0 12px 0;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 900;
+}
+
+.about-cta p{
+  max-width: 640px;
+  margin: 0 auto 18px auto;
+  color: #ebebed;
+  opacity: .95;
+}
+
+.about-cta .btn{
+  margin-top: 6px;
+}
