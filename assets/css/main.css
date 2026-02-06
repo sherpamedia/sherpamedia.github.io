@@ -192,10 +192,10 @@ img{max-width:100%;display:block}
 .portfolio h2, .portfolio h3{
   margin:0; font-weight:900; color:white;
 }
-.portfolio h2{font-size:30px; margin-bottom:4px}
+.portfolio h2{font-size:30px; margin-bottom:24px}
 .portfolio h3{font-size:30px; margin-bottom:48px}
 @media (min-width:768px){
-  .portfolio h2, .portfolio h3{font-size:48px}
+  .portfolio h2, .portfolio h3{font-size:32px}
   .portfolio h3{margin-bottom:64px}
 }
 
@@ -578,12 +578,15 @@ html.is-animating .transition-fade{opacity:0}
   }
 }
 
+.subpage-title{
+  font-size:48px;margin:0 0 14px 0;font-weight:900
+}
 /* ============ Services Page ============ */
 
 .services-page{ padding-top: 140px; padding-bottom: 90px; }
 .services-title{
   margin:0 0 14px 0;
-  font-size: clamp(44px, 5.2vw, 76px);
+  font-size: clamp(44px, 5.2vw, 64px);
   font-weight: 900;
   letter-spacing: -0.02em;
 }
@@ -714,13 +717,6 @@ html.is-animating .transition-fade{opacity:0}
 .about-hero{
   max-width: 900px;
   margin-bottom: 56px;
-}
-
-.about-hero h1{
-  margin:0 0 18px 0;
-  font-size: clamp(44px, 5.5vw, 76px);
-  font-weight: 900;
-  letter-spacing: -0.02em;
 }
 
 .about-hero__lead{
