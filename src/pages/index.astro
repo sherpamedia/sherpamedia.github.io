@@ -5,57 +5,79 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
 
 const logos = [
-  "dunkin-logo.svg","hp-logo.svg","ingram-logo.svg","cirque-du-soleil-logo.svg",
-  "loreal-logo.svg","tropicana-logo.svg","kenneth-cole-logo.svg","pipedrive-logo.svg",
-  "honeywell-logo.svg","savannah-bananas-logo.svg","skullcandy-logo.svg","icee-logo.svg",
-  "quantum-logo.svg","paysafe-logo.svg","chomps-logo.svg","cameo-logo.svg",
-  "dude-wipes-logo.svg","cyara-logo.svg","dell-logo.svg","rldatix-logo.svg",
-  "pattern-logo.svg","genpact-logo.svg","bran-capital-logo.svg","hexaware-logo.svg",
-  "techstars-logo.svg","defy-logo.svg","makena-logo.svg","andreessen-horowitz-logo.svg",
-  "betmgm-logo.png","hometown-logo.png",
+  { file: "dunkin-logo.svg",              alt: "Dunkin'" },
+  { file: "hp-logo.svg",                  alt: "HP" },
+  { file: "ingram-logo.svg",              alt: "Ingram" },
+  { file: "cirque-du-soleil-logo.svg",    alt: "Cirque du Soleil" },
+  { file: "loreal-logo.svg",              alt: "L'Oréal" },
+  { file: "tropicana-logo.svg",           alt: "Tropicana" },
+  { file: "kenneth-cole-logo.svg",        alt: "Kenneth Cole" },
+  { file: "pipedrive-logo.svg",           alt: "Pipedrive" },
+  { file: "honeywell-logo.svg",           alt: "Honeywell" },
+  { file: "savannah-bananas-logo.svg",    alt: "Savannah Bananas" },
+  { file: "skullcandy-logo.svg",          alt: "Skullcandy" },
+  { file: "icee-logo.svg",                alt: "ICEE" },
+  { file: "quantum-logo.svg",             alt: "Quantum" },
+  { file: "paysafe-logo.svg",             alt: "Paysafe" },
+  { file: "chomps-logo.svg",              alt: "Chomps" },
+  { file: "cameo-logo.svg",               alt: "Cameo" },
+  { file: "dude-wipes-logo.svg",          alt: "Dude Wipes" },
+  { file: "cyara-logo.svg",               alt: "Cyara" },
+  { file: "dell-logo.svg",                alt: "Dell" },
+  { file: "rldatix-logo.svg",             alt: "RLDatix" },
+  { file: "pattern-logo.svg",             alt: "Pattern" },
+  { file: "genpact-logo.svg",             alt: "Genpact" },
+  { file: "bran-capital-logo.svg",        alt: "Bain Capital Ventures" },
+  { file: "hexaware-logo.svg",            alt: "Hexaware" },
+  { file: "techstars-logo.svg",           alt: "Techstars" },
+  { file: "defy-logo.svg",               alt: "Defy" },
+  { file: "makena-logo.svg",              alt: "Makena" },
+  { file: "andreessen-horowitz-logo.svg", alt: "Andreessen Horowitz" },
+  { file: "betmgm-logo.png",              alt: "BetMGM" },
+  { file: "hometown-logo.png",            alt: "Hometown" },
 ];
 
 const portfolio = [
-  { name: "GRANT CARDONE",         img: "Grand-Cardone.jpg" },
-  { name: "JUSTIN BALDONI",        img: "Justin-Baldoni.jpg" },
-  { name: "DAVID COULTHARD",       img: "David-Coulthard.jpg" },
-  { name: "ROBIN SHARMA",          img: "Robin-Sharma.jpg" },
-  { name: "RUSSELL PETERS",        img: "Russell-Peters.jpg" },
-  { name: "P. K. SUBBAN",          img: "PK-Subban.jpg" },
-  { name: "GEORGES ST-PIERRE",     img: "Georges-St-Pierre.jpg" },
-  { name: "ULRICH LARSEN",         img: "Ulrich-Larsen.jpg" },
-  { name: "BRENDAN BROWN (WHEATUS)",img: "Wheatus.jpg" },
-  { name: "MATTEO MANCUSO",        img: "Matteo-Mancuso.jpg" },
+  { name: "Grant Cardone",          img: "Grand-Cardone.jpg" },
+  { name: "Justin Baldoni",         img: "Justin-Baldoni.jpg" },
+  { name: "David Coulthard",        img: "David-Coulthard.jpg" },
+  { name: "Robin Sharma",           img: "Robin-Sharma.jpg" },
+  { name: "Russell Peters",         img: "Russell-Peters.jpg" },
+  { name: "P. K. Subban",           img: "PK-Subban.jpg" },
+  { name: "Georges St-Pierre",      img: "Georges-St-Pierre.jpg" },
+  { name: "Ulrich Larsen",          img: "Ulrich-Larsen.jpg" },
+  { name: "Brendan Brown (Wheatus)",img: "Wheatus.jpg" },
+  { name: "Matteo Mancuso",         img: "Matteo-Mancuso.jpg" },
 ];
 ---
 
 <BaseLayout title="Turn Your Content Into a Strategic Lead Magnet">
+
   <!-- ── Hero ─────────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-inner">
-      <h1>Turn Your Content Into a Strategic Lead Magnet</h1>
-      <p>
-        We use audience insights and brand strategy to craft research-backed content
-        that attracts the right prospects, builds authority, and helps you convert
-        listeners into clients.
-      </p>
-      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+    <div class="bg" aria-hidden="true"></div>
+    <div class="container content">
+      <div style="max-width:860px">
+        <h1>Turn Your Content Into a Strategic Lead Magnet</h1>
+        <p>We use audience insights and brand strategy to craft research-backed content that attracts the right prospects, builds authority, and helps you convert listeners into clients.</p>
+        <a class="btn" href={calendlyUrl} target="_blank" rel="noopener">BOOK A CALL</a>
+      </div>
     </div>
   </section>
 
   <!-- ── Trusted Brands ───────────────────────────── -->
-  <section class="brands">
-    <div class="section-inner">
-      <h2 class="section-label">Trusted by Leading Brands</h2>
-      <div class="logo-grid">
+  <section class="section trusted">
+    <div class="container">
+      <h2>Trusted by Leading Brands</h2>
+      <div class="logo-grid" role="list" aria-label="Trusted by logos">
         {logos.map((logo) => (
           <div class="logo-cell">
             <img
-              src={`/assets/img/logos/${logo}`}
-              alt={logo.replace(/-logo\.(svg|png)$/, "").replace(/-/g, " ")}
+              class="logo-img"
+              src={`/assets/img/logos/${logo.file}`}
+              alt={`${logo.alt} logo`}
               loading="lazy"
-              width="120"
-              height="40"
+              decoding="async"
             />
           </div>
         ))}
@@ -63,159 +85,314 @@ const portfolio = [
     </div>
   </section>
 
-  <!-- ── Recognized Voices / Portfolio ────────────── -->
-  <section class="voices">
-    <div class="section-inner">
-      <h2 class="section-label">Recognized Voices</h2>
-      <div class="portfolio-grid">
+  <!-- ── Recognized Voices ────────────────────────── -->
+  <section class="section portfolio-section">
+    <div class="container">
+      <h2>Recognized Voices</h2>
+      <div class="card-grid" role="list" aria-label="Personal brands portfolio preview">
         {portfolio.map((p) => (
-          <div class="portfolio-card">
+          <figure class="card" role="listitem">
             <img
               src={`/assets/img/portfolio/${p.img}`}
               alt={p.name}
               loading="lazy"
-              width="280"
-              height="320"
+              decoding="async"
             />
-            <span>{p.name}</span>
-          </div>
+            <div class="overlay" aria-hidden="true">
+              <div class="overlay-text">{p.name.toUpperCase()}</div>
+            </div>
+            <figcaption class="caption">{p.name}</figcaption>
+          </figure>
         ))}
       </div>
-      <div class="center-cta">
-        <a href="/portfolio/" class="btn btn-outline">VIEW FULL PORTFOLIO</a>
+      <a class="btn-outline" href="/portfolio/">VIEW FULL PORTFOLIO</a>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ──────────────────────────────── -->
+  <section class="testimonials">
+    <div class="container">
+      <p class="kicker" style="text-align:center">Testimonials</p>
+      <h2>What Our Clients Say</h2>
+
+      <div class="testimonials-carousel" data-carousel>
+        <!-- Slide 1 -->
+        <article class="testimonial-slide is-active" data-slide>
+          <div class="panel">
+            <div class="media">
+              <div class="video-embed">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/WOFmokNwISU?si=gfNjx8EGRFCSZYea&controls=0"
+                  title="Samir Mourani testimonial video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="copy">
+              <div class="tag">
+                <span class="testimonial-logos testimonial-logos--two">
+                  <img src="/assets/img/gents-talk-logo.jpg" alt="Gent's Talk logo" />
+                  <img src="/assets/img/air-canada-logo.jpg" alt="Air Canada logo" />
+                </span>
+              </div>
+              <p>Gent's Talk is North America's leading men's self-help podcast, redefining conversations around masculinity, mental health, and personal growth.</p>
+              <p>Hosted by Samir Mourani and presented by Bulova Canada, the show has been featured on Good Morning America, Rolling Stone, The Wall Street Journal, The New York Times, Fox News, People, and more.</p>
+              <p>As a flagship men's mental health series, Gent's Talk is also a featured program on <strong>Air Canada's in-flight entertainment system</strong>, reaching millions of viewers worldwide.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="testimonial-slide" data-slide>
+          <div class="panel">
+            <div class="media">
+              <div class="video-embed">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/T2l2YF9y_Y4?controls=0"
+                  title="The Full Ratchet testimonial video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="copy">
+              <div class="tag">
+                <span class="testimonial-logos testimonial-logos--three">
+                  <img src="/assets/img/podcasts/tfr.jpg" alt="The Full Ratchet logo" />
+                  <img src="/assets/img/aaa-logo.png" alt="American Arbitration Association logo" />
+                  <img src="/assets/img/tech-domains.avif" alt="Tech Domains logo" />
+                </span>
+              </div>
+              <p><strong>The Full Ratchet (TFR): Venture Capital and Startup Investing Demystified</strong></p>
+              <p>Hosted by Nick Moran, General Partner at New Stack Ventures, TFR brings you insider conversations with top investors and founders shaping the future of technology.</p>
+              <p>TFR has generated 3.39M+ downloads, built 90K+ active subscribers, and reached listeners in 199 markets worldwide, with 79% in Tier-1 regions like the US, UK, and Canada.</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="testimonial-controls" aria-label="Testimonial navigation">
+          <button type="button" class="testimonial-nav-btn" data-prev aria-label="Previous">Prev</button>
+          <div class="testimonial-dots">
+            <button type="button" class="testimonial-dot is-active" data-dot="0" aria-label="Testimonial 1" aria-current="true"></button>
+            <button type="button" class="testimonial-dot" data-dot="1" aria-label="Testimonial 2"></button>
+          </div>
+          <button type="button" class="testimonial-nav-btn" data-next aria-label="Next">Next</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Award CTA ─────────────────────────────────── -->
-  <section class="award-block">
-    <div class="section-inner award-inner">
-      <div class="award-text">
-        <img src="/assets/img/podcasts/ceo-tech-live.jpg" alt="CEO Tech Live podcast" width="80" height="80" />
-        <img src="/assets/img/awards/marcom-hexaware.png" alt="MarCom Gold Award" width="80" height="80" />
-        <p>
-          <strong>CEO TECH LIVE by HEXAWARE wins GOLD at the MARCOM AWARDS</strong><br />
-          out of <strong>325,000+</strong> AMCP Entries
-        </p>
+  <!-- ── Awards ────────────────────────────────────── -->
+  <section class="awards">
+    <div class="container">
+      <div class="awards-card">
+        <div class="awards-media">
+          <div class="awards-visual" aria-hidden="true">
+            <img class="awards-avatar" src="/assets/img/podcasts/ceo-tech-live.jpg" alt="CEO Tech Live artwork" loading="lazy" decoding="async" />
+            <img class="awards-badge" src="/assets/img/awards/marcom-hexaware.png" alt="MarCom award badge" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="awards-content">
+          <h2 class="awards-title">
+            CEO TECH LIVE <span class="awards-lite">by HEXAWARE</span> wins <span class="awards-gold">GOLD</span> at the MARCOM AWARDS
+          </h2>
+          <p class="awards-subtitle">out of <strong>325,000+</strong> AMCP Entries</p>
+          <a class="btn-outline awards-btn" href="/case-studies/">READ OUR CASE STUDIES</a>
+        </div>
       </div>
-      <a href="/case-studies/" class="btn btn-outline">READ OUR CASE STUDIES</a>
     </div>
   </section>
+
 </BaseLayout>
 
 <style>
   /* ── Hero ─────────────────────────────────── */
   .hero {
-    min-height: 82vh;
-    display: flex;
-    align-items: center;
-    padding: 6rem 2rem 4rem;
+    position: relative; min-height: 100vh; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero .bg {
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,169,110,0.08) 0%, transparent 70%),
-      var(--clr-bg);
+      radial-gradient(900px 500px at 75% 80%, rgba(23,113,255,.85), rgba(23,113,255,0) 60%),
+      radial-gradient(700px 450px at 35% 30%, rgba(23,113,255,.28), rgba(23,113,255,0) 55%),
+      linear-gradient(180deg, #060d1b 0%, #051733 100%);
   }
-  .hero-inner {
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  .hero .content { position: relative; padding-top: 120px; padding-bottom: 80px; }
+  @media (min-width: 768px) { .hero .content { padding-top: 190px; padding-bottom: 120px; } }
   .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: 42px; line-height: 1.06; margin: 0 0 18px;
     font-weight: 900;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.4rem;
+    text-shadow: 0 1px 16px rgba(23,113,255,.35);
   }
-  .hero p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--clr-muted);
-    max-width: 600px;
-    margin: 0 auto 2.4rem;
-    line-height: 1.7;
-  }
+  @media (min-width: 768px) { .hero h1 { font-size: 64px; line-height: 1.08; } }
+  .hero p { max-width: 720px; color: #ebebed; font-size: 18px; line-height: 1.6; margin: 0 0 18px; }
+  @media (min-width: 768px) { .hero p { font-size: 20px; } }
 
-  /* ── Sections ─────────────────────────────── */
-  .section-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 5rem 2rem;
-  }
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--clr-muted);
-    margin-bottom: 2.5rem;
-    text-align: center;
-  }
-
-  /* ── Logo grid ────────────────────────────── */
-  .brands { border-top: 1px solid var(--clr-border); }
+  /* ── Trusted Brands ───────────────────────── */
+  .trusted { background: #f5f5f6; color: #132850; }
+  .trusted h2 { margin: 0 0 44px; text-align: center; font-size: 28px; font-weight: 900; }
   .logo-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 3rem;
-    align-items: center;
-    justify-content: center;
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    align-items: stretch;
   }
-  .logo-cell img {
-    height: 28px;
-    width: auto;
-    object-fit: contain;
-    filter: brightness(0) invert(0.55);
-    transition: filter 0.2s;
-  }
-  .logo-cell img:hover { filter: brightness(0) invert(0.9); }
+  .logo-cell { width: 100%; aspect-ratio: 3/1; display: flex; align-items: center; justify-content: center; }
+  .logo-img { width: 100%; height: 100%; object-fit: contain; display: block; opacity: .9; transition: opacity .2s ease, transform .2s ease; }
+  .logo-cell:hover .logo-img { opacity: 1; transform: scale(1.03); }
+  @media (min-width: 478px) { .logo-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 640px) { .logo-grid { grid-template-columns: repeat(5, 1fr); } }
+  @media (min-width: 1024px) { .logo-grid { grid-template-columns: repeat(6, 1fr); } }
 
-  /* ── Portfolio grid ───────────────────────── */
-  .voices { border-top: 1px solid var(--clr-border); }
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  .portfolio-card {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    background: var(--clr-surface);
-  }
-  .portfolio-card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-  }
-  .portfolio-card:hover img { transform: scale(1.04); }
-  .portfolio-card span {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.85));
-    padding: 1.5rem 0.8rem 0.8rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-  .center-cta { text-align: center; }
+  /* ── Portfolio / Voices ───────────────────── */
+  .portfolio-section { background: var(--bg-2); text-align: center; }
+  .portfolio-section h2 { margin: 0 0 24px; font-size: 30px; font-weight: 900; }
+  @media (min-width: 768px) { .portfolio-section h2 { font-size: 32px; } }
 
-  /* ── Award block ──────────────────────────── */
-  .award-block { border-top: 1px solid var(--clr-border); }
-  .award-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    margin: 0 auto 48px !important;
+    width: 100% !important;
   }
-  .award-text {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    flex-wrap: wrap;
+  @media (min-width: 768px) {
+    .card-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
   }
-  .award-text img { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; }
-  .award-text p { font-size: 0.95rem; color: var(--clr-muted); max-width: 480px; }
-  .award-text strong { color: var(--clr-text); }
+
+  .card {
+    position: relative; aspect-ratio: 1/1;
+    border-radius: 4px; overflow: hidden;
+    margin: 0 !important; background: #0b1a33;
+    width: 100% !important;
+  }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .overlay {
+    position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.72) 100%);
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none;
+  }
+  .overlay-text { font-weight: 900; letter-spacing: .04em; text-transform: uppercase; font-size: 12px; line-height: 1.2; }
+  @media (hover: hover) { .card:hover .overlay { opacity: 1; transform: translateY(0); } }
+  .caption { display: none; margin: 10px 2px 0; color: #ebebed; opacity: .92; font-weight: 800; font-size: 14px; line-height: 1.25; }
+  @media (max-width: 767px) { .caption { display: block; } .overlay { display: none; } }
+
+  /* ── Testimonials ─────────────────────────── */
+  .testimonials { background: #010101; padding: 64px 0; }
+  .testimonials h2 { text-align: center; margin: 0 0 40px; font-size: 34px; font-weight: 900; }
+
+  .testimonial-slide { display: none; }
+  .testimonial-slide.is-active { display: block; animation: tfade .28s ease; }
+  @keyframes tfade { from { opacity: 0; } to { opacity: 1; } }
+
+  .panel { display: grid; grid-template-columns: 1fr; }
+  .panel > * { min-width: 0; }
+  @media (min-width: 900px) { .panel { grid-template-columns: 1fr 1fr; align-items: start; gap: 24px; } }
+
+  .media { min-height: 360px; display: flex; }
+  @media (max-width: 899px) { .media { min-height: 0; } }
+
+  .video-embed {
+    width: 100%; max-width: 100%; height: 100%;
+    aspect-ratio: 16/9; position: relative;
+    border-radius: 16px; overflow: hidden;
+  }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  @media (max-width: 899px) {
+    .video-embed { height: auto; border-radius: 0; overflow: visible; }
+    .video-embed iframe { position: static; width: 100%; height: auto; aspect-ratio: 16/9; }
+  }
+
+  .copy { padding: 28px; color: #ebebed; }
+  @media (max-width: 899px) { .copy { padding: 0; display: grid; gap: 14px; } }
+  .copy .tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; font-weight: 900; letter-spacing: .04em; }
+  .copy p { margin: 10px 0; line-height: 1.65; font-size: 14px; opacity: .95; }
+  @media (max-width: 899px) { .copy p { margin: 0; overflow-wrap: anywhere; } }
+
+  .testimonial-logos { display: inline-flex; align-items: center; gap: 10px; }
+  .testimonial-logos img { height: clamp(44px, 7vw, 96px); width: auto; max-height: 96px; display: block; }
+  .testimonial-logos--three {
+    background: #ffffff; border-radius: 0; gap: 0; overflow: hidden; padding-right: 16px;
+  }
+  .testimonial-logos--three img { border-radius: 0; padding: 0; margin: 0; background: transparent; }
+  .testimonial-logos--three img:first-child { box-shadow: inset 0 0 0 1px #bcc3d1; }
+  @media (max-width: 899px) {
+    .copy .tag { width: 100%; margin: 0; }
+    .testimonial-logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: 100%; }
+    .testimonial-logos--three { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .testimonial-logos img { width: 100%; height: 72px; max-height: none; object-fit: contain; object-position: center; }
+  }
+
+  .testimonial-controls { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  @media (max-width: 899px) { .testimonial-controls { justify-content: space-between; } }
+  .testimonial-nav-btn {
+    background: transparent; color: #dce6ff;
+    border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
+    padding: 8px 14px; font-size: 12px; font-weight: 800;
+    letter-spacing: .04em; text-transform: uppercase; cursor: pointer;
+  }
+  .testimonial-nav-btn:hover { border-color: var(--brand); color: #fff; }
+  .testimonial-dots { display: flex; align-items: center; gap: 8px; }
+  .testimonial-dot {
+    width: 10px; height: 10px; border-radius: 999px; border: 0;
+    background: rgba(255,255,255,.35); cursor: pointer;
+  }
+  .testimonial-dot.is-active { background: var(--brand); }
+
+  /* ── Awards ───────────────────────────────── */
+  .awards { background: #000; padding: 80px 0; }
+  .awards-card {
+    background: #041d46; border: 3px solid #8ab5f7; border-radius: 6px;
+    padding: 22px; max-width: 980px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center;
+  }
+  @media (min-width: 900px) {
+    .awards-card { grid-template-columns: 300px minmax(0, 1fr); gap: 26px; padding: 18px 26px; max-height: 316px; }
+  }
+  .awards-visual { position: relative; width: min(100%, 300px); margin: 0 auto; }
+  @media (min-width: 900px) { .awards-visual { margin: 0; width: 300px; } }
+  .awards-avatar { width: 256px; height: 256px; object-fit: cover; border-radius: 10px; display: block; }
+  .awards-badge { position: absolute; width: 56%; right: -8%; top: 8%; height: auto; display: block; }
+  .awards-content { max-width: 760px; width: 100%; text-align: left; }
+  @media (min-width: 900px) { .awards-content { align-self: center; } }
+  .awards-title { margin: 0 0 10px; color: #d9e5f8; font-size: clamp(24px, 2.2vw, 42px); line-height: 1.08; font-weight: 900; letter-spacing: -0.01em; }
+  .awards-lite { font-weight: 700; }
+  .awards-gold { color: #ffd027; }
+  .awards-subtitle { margin: 0 0 18px; color: #d9e5f8; font-size: clamp(18px, 1.9vw, 30px); line-height: 1.2; }
+  .awards-subtitle strong { font-weight: 900; }
+  .awards-btn { border-color: #a9c9f8; color: #f3f6ff; font-size: clamp(13px, 1.2vw, 18px); padding: 12px 20px; }
+  .awards-btn:hover { background: #1f4d92; border-color: #a9c9f8; }
 </style>
+
+<script>
+  function initCarousel() {
+    const carousel = document.querySelector("[data-carousel]");
+    if (!carousel) return;
+
+    const slides = Array.from(carousel.querySelectorAll("[data-slide]"));
+    const dots = Array.from(carousel.querySelectorAll("[data-dot]"));
+    let current = 0;
+
+    function go(idx: number) {
+      slides[current].classList.remove("is-active");
+      dots[current].classList.remove("is-active");
+      dots[current].removeAttribute("aria-current");
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add("is-active");
+      dots[current].classList.add("is-active");
+      dots[current].setAttribute("aria-current", "true");
+    }
+
+    carousel.querySelector("[data-prev]")?.addEventListener("click", () => go(current - 1));
+    carousel.querySelector("[data-next]")?.addEventListener("click", () => go(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => go(i)));
+  }
+
+  initCarousel();
+  document.addEventListener("astro:after-swap", initCarousel);
+</script>

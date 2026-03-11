@@ -4,8 +4,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
 
-// In the CMS-driven version these come from Tina content.
-// For now they're typed inline — easy to move to MDX files via Tina.
 const studies = [
   {
     slug: "hexaware",
@@ -38,113 +36,104 @@ const studies = [
   title="Case Studies"
   description="Explore how Sherpa Media turns podcast strategy into measurable growth."
 >
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <p class="eyebrow">Case Studies</p>
-      <h1>Case Studies</h1>
-      <p class="sub">
-        Explore how we turn podcast strategy into measurable growth through editing,
-        distribution, and content repurposing.
-      </p>
-    </div>
-  </section>
+  <section class="cs-page">
+    <div class="container">
+      <header class="cs-hero">
+        <p class="kicker">Case Studies</p>
+        <h1 class="subpage-title">Case Studies</h1>
+        <p class="cs-subtitle">
+          Explore how we turn podcast strategy into measurable growth through editing,
+          distribution, and content repurposing.
+        </p>
+      </header>
 
-  <section class="studies-section">
-    <div class="studies-inner">
-      {studies.map((s) => (
-        <article class="study-card" id={s.slug}>
-          {s.videoUrl && (
-            <div class="study-video">
-              <video controls preload="none" poster={s.podcastImg}>
-                <source src={s.videoUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          )}
-
-          <div class="study-meta">
-            <img src={s.podcastImg} alt={`${s.client} podcast`} width="72" height="72" />
-            {s.awardBadge && (
-              <img src={s.awardBadge} alt="Award badge" width="72" height="72" />
+      <div class="studies-inner">
+        {studies.map((s) => (
+          <article class="study-card" id={s.slug}>
+            {s.videoUrl && (
+              <div class="study-video">
+                <video controls preload="none" poster={s.podcastImg}>
+                  <source src={s.videoUrl} type="video/mp4" />
+                </video>
+              </div>
             )}
-          </div>
 
-          <h2>{s.title}</h2>
-          {s.award && <p class="award-label">{s.award}</p>}
+            <div class="study-meta">
+              <img src={s.podcastImg} alt={`${s.client} podcast`} width="72" height="72" />
+              {s.awardBadge && (
+                <img src={s.awardBadge} alt="Award badge" width="72" height="72" />
+              )}
+            </div>
 
-          <div class="study-sections">
-            <div class="study-section">
-              <h3>The Goal</h3>
-              <p>{s.goal}</p>
-            </div>
-            <div class="study-section">
-              <h3>Our Role</h3>
-              <p>{s.role}</p>
-            </div>
-            <div class="study-section">
-              <h3>The Impact</h3>
-              <p>{s.impact}</p>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
+            <h2>{s.title}</h2>
+            {s.award && <p class="award-label">{s.award}</p>}
 
-  <section class="page-cta">
-    <div class="page-cta-inner">
-      <h2>Ready to create your success story?</h2>
-      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+            <div class="study-sections">
+              <div class="study-section">
+                <h3>The Goal</h3>
+                <p>{s.goal}</p>
+              </div>
+              <div class="study-section">
+                <h3>Our Role</h3>
+                <p>{s.role}</p>
+              </div>
+              <div class="study-section">
+                <h3>The Impact</h3>
+                <p>{s.impact}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="service-cta" style="margin-top:0">
+        <h2 class="service-cta__title">Ready to create your success story?</h2>
+        <a class="btn" href={calendlyUrl} target="_blank" rel="noopener">BOOK A CALL</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding: 7rem 2rem 4rem; text-align: center;
-    border-bottom: 1px solid var(--clr-border);
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+  .cs-page { padding-top: 140px; padding-bottom: 90px; position: relative; }
+  .cs-page::before {
+    content: "";
+    position: absolute; inset: 0 0 auto 0; height: 420px;
+    background:
+      radial-gradient(760px 260px at 16% 0%, rgba(23,113,255,.25), rgba(23,113,255,0) 70%),
+      radial-gradient(560px 260px at 86% 0%, rgba(23,113,255,.20), rgba(23,113,255,0) 70%);
+    pointer-events: none;
   }
-  .page-hero-inner { max-width: 700px; margin: 0 auto; }
-  .eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.8rem;
-  }
-  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
-  .sub { color: var(--clr-muted); font-size: 1.05rem; line-height: 1.7; }
+  .cs-page .container { position: relative; z-index: 1; }
 
-  .studies-section { padding: 5rem 2rem; }
-  .studies-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 5rem; }
+  .cs-hero { max-width: 840px; margin-bottom: 56px; }
+  .cs-subtitle { margin: 0; color: #ebebed; opacity: .9; max-width: 760px; line-height: 1.7; font-size: 17px; }
 
-  .study-card { border-bottom: 1px solid var(--clr-border); padding-bottom: 5rem; }
+  .studies-inner { max-width: 860px; display: flex; flex-direction: column; gap: 5rem; margin-bottom: 5rem; }
+
+  .study-card { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 5rem; }
   .study-card:last-child { border-bottom: none; }
 
-  .study-video {
-    border-radius: var(--radius); overflow: hidden;
-    margin-bottom: 1.5rem; background: var(--clr-surface);
-    aspect-ratio: 16/9;
-  }
+  .study-video { border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; background: var(--card); aspect-ratio: 16/9; }
   .study-video video { width: 100%; height: 100%; object-fit: cover; }
 
-  .study-meta {
-    display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;
-  }
+  .study-meta { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
   .study-meta img { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; }
 
   .study-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem; }
-  .award-label {
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
-    color: var(--clr-accent); text-transform: uppercase; margin-bottom: 2rem;
-  }
+  .award-label { font-size: 0.8rem; font-weight: 600; letter-spacing: .08em; color: #91bcff; text-transform: uppercase; margin-bottom: 2rem; }
 
   .study-sections { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
-  .study-section h3 {
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.5rem;
-  }
-  .study-section p { color: var(--clr-muted); line-height: 1.8; }
+  .study-section h3 { font-size: 0.78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8eb8ff; margin-bottom: 0.5rem; }
+  .study-section p { color: #ebebed; opacity: .9; line-height: 1.8; margin: 0; }
 
-  .page-cta { border-top: 1px solid var(--clr-border); padding: 5rem 2rem; text-align: center; }
-  .page-cta-inner { max-width: 600px; margin: 0 auto; }
-  .page-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; }
+  .service-cta {
+    max-width: 860px;
+    display: flex; gap: 16px; align-items: center;
+    justify-content: space-between; flex-wrap: wrap;
+    padding: 22px 24px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(12,31,64,.75);
+  }
+  .service-cta__title { margin: 0; font-size: 22px; font-weight: 900; }
 </style>

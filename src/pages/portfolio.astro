@@ -2,51 +2,80 @@
 // src/pages/portfolio.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const portfolio = [
-  { name: "Grant Cardone",          img: "Grand-Cardone.jpg" },
-  { name: "Justin Baldoni",         img: "Justin-Baldoni.jpg" },
-  { name: "David Coulthard",        img: "David-Coulthard.jpg" },
-  { name: "Robin Sharma",           img: "Robin-Sharma.jpg" },
-  { name: "Russell Peters",         img: "Russell-Peters.jpg" },
-  { name: "P. K. Subban",           img: "PK-Subban.jpg" },
-  { name: "Georges St-Pierre",      img: "Georges-St-Pierre.jpg" },
-  { name: "Ulrich Larsen",          img: "Ulrich-Larsen.jpg" },
-  { name: "Brendan Brown (Wheatus)",img: "Wheatus.jpg" },
-  { name: "Matteo Mancuso",         img: "Matteo-Mancuso.jpg" },
+const business = [
+  { img: "lead-the-team.jpg",          alt: "Lead The Team",           href: "https://www.youtube.com/@benfanning1" },
+  { img: "leaders-in-logistics.jpg",   alt: "Leaders in Logistics",    href: "https://open.spotify.com/show/16vakhfYmGthnPUKnXjy14" },
+  { img: "fueling-ai.jpg",             alt: "Fueling AI",              href: "https://open.spotify.com/show/1DvROV2XiGWi68oaOkOlAF" },
+  { img: "ceo-tech-live.jpg",          alt: "CEO Tech Live",           href: "https://open.spotify.com/show/7DKfwsTNWXFjHB0i9UkCmt" },
+  { img: "fidium.jpg",                 alt: "Fidium",                  href: "https://www.youtube.com/@Fidium" },
+  { img: "dell-podcast.jpg",           alt: "Dell Podcast",            href: "#" },
+  { img: "lead-it.jpg",               alt: "Lead I.T",                href: "https://open.spotify.com/show/2cmunRCS0lGOSg4kdxuoOR" },
+  { img: "the-cyber-elite.jpg",        alt: "The Cyber Elite",         href: "#" },
+  { img: "tql-podcast.jpg",            alt: "TQL Podcast",             href: "#" },
+  { img: "tfr.jpg",                    alt: "The Full Ratchet",        href: "https://www.youtube.com/@nicholasmoran3095" },
+  { img: "valor-impact.jpg",           alt: "Valor Impact Podcast",    href: "https://open.spotify.com/show/3CbZLYBc5vWPuRv0fW07fp" },
+  { img: "opportunity-made.jpg",       alt: "Opportunity Made",        href: "https://open.spotify.com/show/0EeVInnp62Eg0FBuh0cGzg" },
+];
+
+const entertainment = [
+  { img: "americana-curious.jpg",      alt: "Americana Curious",       href: "https://www.youtube.com/@AmericanaCurious" },
+  { img: "zeitgeist.jpg",             alt: "Zeitgeist",               href: "https://www.youtube.com/@zeitgeistpod" },
+  { img: "gents-talk.jpg",            alt: "Gents Talk",              href: "https://www.youtube.com/@GentsTalkPodcast" },
+  { img: "the-authentic-man.jpg",     alt: "The Authentic Man",       href: "https://www.youtube.com/@TheAuthenticMan" },
+  { img: "the-asapark-podcast.jpg",   alt: "The AsaPark Podcast",     href: "https://www.youtube.com/@theasaparkpod" },
+  { img: "vda.jpg",                   alt: "VDA",                     href: "https://www.youtube.com/@VeteranDebtAssistance/videos" },
+  { img: "sex-upgraded.jpg",          alt: "Sex Upgraded",            href: "https://www.youtube.com/@taylorclarkjohnson" },
+  { img: "the-markoruta-exchanges.jpg", alt: "The MarkoRuta Exchanges", href: "https://www.youtube.com/@marcorutaexchangespodcast" },
+  { img: "whiskey-noobs.jpg",         alt: "Whiskey Noobs",           href: "https://www.youtube.com/@whiskey_noobs/podcasts" },
+  { img: "you-in-yours.jpg",          alt: "You in Yours",            href: "https://www.youtube.com/@youatyours/videos" },
+  { img: "passionate-few.jpg",        alt: "Passionate Few",          href: "https://www.youtube.com/@thepassionatefew/podcasts" },
+  { img: "the-boys-toilets.jpg",      alt: "The Boys Toilets",        href: "https://www.youtube.com/@TheBoysToiletsPodcast/videos" },
 ];
 ---
 
 <BaseLayout
   title="Portfolio"
-  description="Sherpa Media's portfolio of recognized voices and notable podcast clients."
+  description="Sherpa Media's portfolio of business and entertainment podcasts."
 >
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <p class="eyebrow">Portfolio</p>
-      <h1>Recognized Voices</h1>
-      <p class="sub">
-        We've worked with world-class leaders, athletes, entertainers, and brands
-        to amplify their message through premium podcast production.
-      </p>
-    </div>
-  </section>
+  <section class="section" style="padding-top:140px">
+    <div class="container">
+      <p class="kicker">Portfolio</p>
+      <h1 class="subpage-title">What we've worked on:</h1>
+      <p class="port-lead">Sherpa Media have built a strong portfolio of both Business and Entertainment sectors</p>
 
-  <section class="portfolio-section">
-    <div class="portfolio-inner">
-      <div class="portfolio-grid">
-        {portfolio.map((p) => (
-          <div class="portfolio-card">
-            <img
-              src={`/assets/img/portfolio/${p.img}`}
-              alt={p.name}
-              loading="lazy"
-              width="320"
-              height="380"
-            />
-            <div class="card-overlay">
-              <span>{p.name.toUpperCase()}</span>
-            </div>
-          </div>
+      <h2 class="port-h2">Business</h2>
+      <div class="pod-grid" role="list" aria-label="Business podcasts">
+        {business.map((p) => (
+          <a
+            class="pod-card"
+            role="listitem"
+            href={p.href}
+            target={p.href === "#" ? undefined : "_blank"}
+            rel={p.href === "#" ? undefined : "noopener"}
+            aria-label={`Open ${p.alt}`}
+          >
+            <img src={`/assets/img/podcasts/${p.img}`} alt={`${p.alt} podcast artwork`} loading="lazy" decoding="async" />
+            <span class="play" aria-hidden="true"></span>
+          </a>
+        ))}
+      </div>
+
+      <div style="height:56px"></div>
+
+      <h2 class="port-h2">Entertainment</h2>
+      <div class="pod-grid" role="list" aria-label="Entertainment podcasts">
+        {entertainment.map((p) => (
+          <a
+            class="pod-card"
+            role="listitem"
+            href={p.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={`Open ${p.alt}`}
+          >
+            <img src={`/assets/img/podcasts/${p.img}`} alt={`${p.alt} podcast artwork`} loading="lazy" decoding="async" />
+            <span class="play" aria-hidden="true"></span>
+          </a>
         ))}
       </div>
     </div>
@@ -54,49 +83,48 @@ const portfolio = [
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding: 7rem 2rem 4rem; text-align: center;
-    border-bottom: 1px solid var(--clr-border);
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
-  }
-  .page-hero-inner { max-width: 700px; margin: 0 auto; }
-  .eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.8rem;
-  }
-  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
-  .sub { color: var(--clr-muted); font-size: 1.05rem; line-height: 1.7; }
+  .port-lead { max-width: 820px; color: #ebebed; opacity: .95; line-height: 1.7; margin: 0 0 34px; }
+  .port-h2 { margin: 0 0 18px; font-size: 22px; font-weight: 900; letter-spacing: .02em; }
 
-  .portfolio-section { padding: 5rem 2rem; }
-  .portfolio-inner { max-width: var(--max-w); margin: 0 auto; }
-  .portfolio-grid {
+  .pod-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
   }
+  @media (min-width: 768px) { .pod-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .pod-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
-  .portfolio-card {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    aspect-ratio: 4/5;
-    background: var(--clr-surface);
-    cursor: default;
+  .pod-card {
+    position: relative; display: block; border-radius: 14px; overflow: hidden;
+    aspect-ratio: 1/1; background: rgba(255,255,255,.04);
+    box-shadow: 0 18px 40px rgba(0,0,0,.22); outline: none;
   }
-  .portfolio-card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .pod-card img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.01); }
+
+  .pod-card::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.30) 100%);
+    opacity: 0; transition: opacity .18s ease;
   }
-  .portfolio-card:hover img { transform: scale(1.06); }
-  .card-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent 0%, rgba(0,0,0,0.88) 100%);
-    padding: 2.5rem 1rem 1rem;
-    transition: opacity 0.3s;
+  .play {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%) scale(.94);
+    width: 64px; height: 64px; border-radius: 999px;
+    background: rgba(0,0,0,.55); border: 2px solid rgba(255,255,255,.75);
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    opacity: 0; transition: opacity .18s ease, transform .18s ease;
   }
-  .card-overlay span {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-    color: var(--clr-text);
+  .play::before {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    transform: translate(-38%,-50%);
+    width: 0; height: 0;
+    border-top: 10px solid transparent; border-bottom: 10px solid transparent;
+    border-left: 16px solid rgba(255,255,255,.92);
   }
+  @media (hover: hover) {
+    .pod-card:hover::after { opacity: 1; }
+    .pod-card:hover .play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  }
+  .pod-card:focus-visible::after { opacity: 1; }
+  .pod-card:focus-visible .play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 </style>

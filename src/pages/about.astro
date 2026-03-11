@@ -8,15 +8,17 @@ const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
   title="About"
   description="Sherpa Media guides brands to new heights through strategy, content, and podcast production."
 >
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <h1>About Sherpa Media</h1>
-    </div>
-  </section>
+  <section class="about-page">
+    <div class="container">
+      <div class="about-hero">
+        <p class="kicker">About</p>
+        <h1 class="subpage-title">About Sherpa Media</h1>
+        <p class="about-hero__lead">
+          We believe in hard work, dedication, and going all in to achieve meaningful results.
+        </p>
+      </div>
 
-  <section class="about-body">
-    <div class="about-inner">
-      <div class="about-text">
+      <div class="about-block">
         <p>
           At Sherpa Media, our name reflects how we work with our clients. Just like a sherpa
           guides climbers to the summit through preparation, resilience, and relentless support,
@@ -35,61 +37,52 @@ const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
           meaningful engagement, and achieve measurable results. With Sherpa Media, your podcast
           becomes more than a show — it becomes a strategic marketing tool that grows your brand.
         </p>
-
-        <div class="mission-block">
-          <h2>Mission</h2>
-          <p>
-            Our mission is to unlock the full potential of every voice, helping businesses and
-            creators share their message with audiences they've only dreamed of reaching. We
-            strive to turn podcasts into powerful catalysts for growth, connection, and impact,
-            amplifying ideas that inspire, engage, and transform.
-          </p>
-        </div>
       </div>
-    </div>
-  </section>
 
-  <section class="page-cta">
-    <div class="page-cta-inner">
-      <h2>Carry your story further</h2>
-      <p>
-        If you're serious about using podcasting as a long-term growth and impact channel,
-        we'd love to help.
-      </p>
-      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+      <div class="about-block">
+        <h2>Mission</h2>
+        <p>
+          Our mission is to unlock the full potential of every voice, helping businesses and
+          creators share their message with audiences they've only dreamed of reaching. We
+          strive to turn podcasts into powerful catalysts for growth, connection, and impact,
+          amplifying ideas that inspire, engage, and transform.
+        </p>
+      </div>
+
+      <div class="service-cta" style="margin-top:0">
+        <h2 class="service-cta__title">Carry your story further</h2>
+        <a class="btn" href={calendlyUrl} target="_blank" rel="noopener">BOOK A CALL</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding: 7rem 2rem 4rem;
-    text-align: center;
-    border-bottom: 1px solid var(--clr-border);
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+  .about-page { padding-top: 140px; padding-bottom: 90px; position: relative; }
+  .about-page::before {
+    content: "";
+    position: absolute; inset: 0 0 auto 0; height: 420px;
+    background:
+      radial-gradient(760px 260px at 16% 0%, rgba(23,113,255,.25), rgba(23,113,255,0) 70%),
+      radial-gradient(560px 260px at 86% 0%, rgba(23,113,255,.20), rgba(23,113,255,0) 70%);
+    pointer-events: none;
   }
-  .page-hero-inner { max-width: 700px; margin: 0 auto; }
-  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; }
+  .about-page .container { position: relative; z-index: 1; }
 
-  .about-body { padding: 5rem 2rem; }
-  .about-inner { max-width: 760px; margin: 0 auto; }
-  .about-text p {
-    color: var(--clr-muted); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem;
-  }
-  .mission-block {
-    margin-top: 3rem; padding: 2.5rem;
-    border: 1px solid var(--clr-border);
-    border-left: 3px solid var(--clr-accent);
-    border-radius: var(--radius);
-    background: var(--clr-surface);
-  }
-  .mission-block h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
-  .mission-block p { margin-bottom: 0; }
+  .about-hero { max-width: 900px; margin-bottom: 56px; }
+  .about-hero__lead { font-size: 20px; line-height: 1.6; color: #ebebed; opacity: .95; max-width: 720px; margin: 0; }
 
-  .page-cta {
-    border-top: 1px solid var(--clr-border); padding: 5rem 2rem; text-align: center;
+  .about-block { max-width: 860px; margin-bottom: 56px; }
+  .about-block h2 { margin: 0 0 16px; font-size: 28px; font-weight: 900; letter-spacing: -0.01em; }
+  .about-block p { margin: 0 0 14px; line-height: 1.7; color: #ebebed; opacity: .92; }
+
+  .service-cta {
+    max-width: 860px; margin-top: 28px;
+    display: flex; gap: 16px; align-items: center;
+    justify-content: space-between; flex-wrap: wrap;
+    padding: 22px 24px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(12,31,64,.75);
   }
-  .page-cta-inner { max-width: 600px; margin: 0 auto; }
-  .page-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.8rem; }
-  .page-cta p { color: var(--clr-muted); margin-bottom: 2rem; }
+  .service-cta__title { margin: 0; font-size: 22px; font-weight: 900; }
 </style>

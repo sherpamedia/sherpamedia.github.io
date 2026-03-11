@@ -1,11 +1,15 @@
 ---
 // src/layouts/BaseLayout.astro
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
   title: string;
   description?: string;
 }
 const { title, description = "Sherpa Media is a full-service podcast agency." } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const logoSVGPath = "M21.9453 29.9521C22.2077 29.9522 22.4238 30.1653 22.4238 30.4307V32.3203C22.4238 32.5828 22.6361 32.7987 22.9014 32.7988H24.791C25.0534 32.7988 25.2695 33.0119 25.2695 33.2773V39.5215C25.2695 39.784 25.0564 40 24.791 40H0.525391C0.262961 40 0.046875 39.7869 0.046875 39.5215V30.4307C0.046875 30.1682 0.260045 29.9521 0.525391 29.9521H21.9453ZM39.5225 16.6338C39.7847 16.634 40 16.847 40 17.1123H39.9971V39.5215C39.997 39.7839 39.7847 39.9998 39.5195 40H29.0137C28.7513 40 28.5352 39.7869 28.5352 39.5215V30.0273C28.5351 29.7649 28.322 29.5488 28.0566 29.5488H26.1465C25.8843 29.5486 25.6689 29.3356 25.6689 29.0703V27.1602C25.6689 26.8977 25.4557 26.6816 25.1904 26.6816H0.525391C0.262961 26.6816 0.046875 26.4685 0.046875 26.2031V17.1123C0.046875 16.8498 0.260045 16.6338 0.525391 16.6338H39.5225ZM39.4756 0C39.7379 0.000190035 39.9531 0.213211 39.9531 0.478516H39.9502V12.8887C39.9502 13.1511 39.7378 13.367 39.4727 13.3672H29.0127C28.7504 13.367 28.5352 13.154 28.5352 12.8887V10.5264C28.5351 10.2639 28.3219 10.0479 28.0566 10.0479H0.478516C0.216086 10.0479 0 9.83476 0 9.56934V0.478516C0 0.213092 0.21317 0 0.478516 0H39.4756Z";
 ---
 
 <!doctype html>
@@ -17,316 +21,308 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     <title>{title} — Sherpa Media</title>
 
-    <!-- View Transitions: enables SPA-like page changes without full reload -->
-    <meta name="astro-view-transitions" />
+    <!-- View Transitions: SPA-like page changes without full reload -->
+    <ViewTransitions />
 
-    <!-- Fonts -->
+    <!-- Adobe Typekit (Avenir Lt Pro) -->
+    <link rel="stylesheet" href="https://use.typekit.net/urb1kiy.css" />
+
+    <!-- Google Fonts fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
 
   <body>
     <!-- Navigation -->
-    <header class="site-header" id="site-header">
-      <nav class="nav-inner">
-        <a href="/" class="nav-logo" aria-label="Sherpa Media Home">
-          <span class="logo-sherpa">SHERPA</span><span class="logo-media">MEDIA</span>
-        </a>
+    <header>
+      <nav class="site-nav">
+        <div class="container bar">
+          <a class="brand" href="/" aria-label="Sherpa Media Home">
+            <span class="mark" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d={logoSVGPath} fill="url(#logo-grad)" />
+                <defs>
+                  <linearGradient id="logo-grad" x1="0.0467" y1="34.9774" x2="39.9476" y2="34.9774" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#1771FF" />
+                    <stop offset="1" stop-color="#1F4285" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="word"><strong>SHERPA</strong><span>MEDIA</span></span>
+          </a>
 
-        <!-- Desktop nav -->
-        <ul class="nav-links" role="list">
-          <li><a href="/service/">SERVICE</a></li>
-          <li><a href="/portfolio/">PORTFOLIO</a></li>
-          <li><a href="/case-studies/">CASE STUDIES</a></li>
-          <li><a href="/about/">ABOUT</a></li>
-          <li>
-            <a
-              href="https://calendly.com/production-sherpamedia/30min"
-              class="btn btn-outline"
-              target="_blank"
-              rel="noopener">BOOK A CALL</a
-            >
-          </li>
-        </ul>
+          <div class="nav-links">
+            <a href="/service/">SERVICE</a>
+            <a href="/portfolio/">PORTFOLIO</a>
+            <a href="/case-studies/">CASE STUDIES</a>
+            <a href="/about/">ABOUT</a>
+            <a class="btn" href="https://calendly.com/production-sherpamedia/30min" target="_blank" rel="noopener">BOOK A CALL</a>
+          </div>
 
-        <!-- Mobile hamburger -->
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+          <button class="menu-btn" type="button" aria-label="Open menu" id="menu-open">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </nav>
 
-      <!-- Mobile drawer -->
-      <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-        <ul role="list">
-          <li><a href="/service/">SERVICE</a></li>
-          <li><a href="/portfolio/">PORTFOLIO</a></li>
-          <li><a href="/case-studies/">CASE STUDIES</a></li>
-          <li><a href="/about/">ABOUT</a></li>
-          <li>
-            <a
-              href="https://calendly.com/production-sherpamedia/30min"
-              class="btn btn-outline"
-              target="_blank"
-              rel="noopener">BOOK A CALL</a
-            >
-          </li>
-        </ul>
+      <!-- Full-screen mobile drawer -->
+      <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <div class="top">
+          <a class="brand" href="/">
+            <span class="mark" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d={logoSVGPath} fill="url(#logo-grad-m)" />
+                <defs>
+                  <linearGradient id="logo-grad-m" x1="0.0467" y1="34.9774" x2="39.9476" y2="34.9774" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#1771FF" />
+                    <stop offset="1" stop-color="#1F4285" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="word"><strong>SHERPA</strong><span>MEDIA</span></span>
+          </a>
+          <button class="menu-btn" type="button" aria-label="Close menu" id="menu-close">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 6l12 12M18 6l-12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="links">
+          <a href="/service/" class="drawer-link">SERVICE</a>
+          <a href="/portfolio/" class="drawer-link">PORTFOLIO</a>
+          <a href="/case-studies/" class="drawer-link">CASE STUDIES</a>
+          <a href="/about/" class="drawer-link">ABOUT</a>
+          <a class="btn drawer-link" href="https://calendly.com/production-sherpamedia/30min" target="_blank" rel="noopener">BOOK A CALL</a>
+        </div>
       </div>
     </header>
 
-    <!-- Page content (View Transitions animates this) -->
+    <!-- Page content -->
     <main id="main-content" transition:animate="fade">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="/" class="nav-logo">
-            <span class="logo-sherpa">SHERPA</span><span class="logo-media">MEDIA</span>
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-left">
+          <a class="brand" href="/" style="margin-bottom:14px;display:inline-flex;">
+            <span class="mark footer-mark" aria-hidden="true"></span>
+            <span class="word"><strong>SHERPA</strong><span>MEDIA</span></span>
           </a>
           <p>Sherpa Media is a full-service podcast agency that makes it easy for brands to create, launch and grow successful podcasts.</p>
-          <p class="copyright">©2026 Sherpa Media LLC</p>
+          <small>©2026 Sherpa Media LLC</small>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
           <h4>NAVIGATION</h4>
-          <ul role="list">
-            <li><a href="/service/">SERVICE</a></li>
-            <li><a href="/portfolio/">PORTFOLIO</a></li>
-            <li><a href="/case-studies/">CASE STUDIES</a></li>
-            <li><a href="/about/">ABOUT</a></li>
-          </ul>
+          <a href="/service/">SERVICE</a>
+          <a href="/portfolio/">PORTFOLIO</a>
+          <a href="/case-studies/">CASE STUDIES</a>
+          <a href="/about/">ABOUT</a>
         </nav>
       </div>
     </footer>
 
-    <!-- Mobile menu script (tiny, inline) -->
     <script>
-      const hamburger = document.getElementById("hamburger")!;
-      const mobileNav = document.getElementById("mobile-nav")!;
+      function initNav() {
+        const openBtn = document.getElementById("menu-open");
+        const closeBtn = document.getElementById("menu-close");
+        const drawer = document.getElementById("mobile-drawer");
+        if (!openBtn || !closeBtn || !drawer) return;
 
-      hamburger.addEventListener("click", () => {
-        const open = hamburger.getAttribute("aria-expanded") === "true";
-        hamburger.setAttribute("aria-expanded", String(!open));
-        mobileNav.setAttribute("aria-hidden", String(open));
-        mobileNav.classList.toggle("open");
-        hamburger.classList.toggle("active");
-      });
-
-      // Close mobile nav on link click
-      mobileNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          hamburger.setAttribute("aria-expanded", "false");
-          mobileNav.setAttribute("aria-hidden", "true");
-          mobileNav.classList.remove("open");
-          hamburger.classList.remove("active");
+        openBtn.addEventListener("click", () => {
+          drawer.classList.add("open");
+          drawer.setAttribute("aria-hidden", "false");
         });
-      });
 
-      // Sticky header shrink on scroll
-      const header = document.getElementById("site-header")!;
-      window.addEventListener("scroll", () => {
-        header.classList.toggle("scrolled", window.scrollY > 40);
-      });
+        const closeDrawer = () => {
+          drawer.classList.remove("open");
+          drawer.setAttribute("aria-hidden", "true");
+        };
+
+        closeBtn.addEventListener("click", closeDrawer);
+        drawer.querySelectorAll(".drawer-link").forEach((l) => l.addEventListener("click", closeDrawer));
+      }
+
+      // Run on initial load and after each navigation
+      initNav();
+      document.addEventListener("astro:after-swap", initNav);
     </script>
   </body>
 </html>
 
 <style is:global>
   /* ── Reset & tokens ─────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; padding: 0; }
 
   :root {
-    --clr-bg: #0a0a0a;
-    --clr-surface: #111111;
-    --clr-border: #1e1e1e;
-    --clr-text: #f0f0f0;
-    --clr-muted: #888;
-    --clr-accent: #c8a96e;   /* gold */
-    --clr-accent-dim: rgba(200,169,110,0.15);
-    --font: "Inter", system-ui, sans-serif;
-    --nav-h: 72px;
+    --bg:    #060D1B;
+    --bg-2:  #051733;
+    --ink:   #f5f5f6;
+    --muted: #c7cbd6;
+    --brand: #1771ff;
+    --brand-2: #1360d8;
+    --slate: #132850;
+    --card:  #0b1a33;
+    --max:   1440px;
     --radius: 6px;
-    --max-w: 1200px;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--clr-bg);
-    color: var(--clr-text);
-    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "avenir-lt-pro", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
-  img { max-width: 100%; height: auto; display: block; }
+  img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
-  ul[role="list"] { list-style: none; }
+
+  /* ── Layout ─────────────────────────────────── */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .container { padding: 0 64px; } }
 
   /* ── Buttons ────────────────────────────────── */
   .btn {
-    display: inline-block;
-    padding: 0.65rem 1.4rem;
-    border-radius: var(--radius);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--brand); color: white;
+    padding: 12px 18px; border-radius: var(--radius);
+    font-weight: 800; letter-spacing: .02em; border: 0; cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+    font-size: inherit;
   }
-  .btn-primary {
-    background: var(--clr-accent);
-    color: #000;
-  }
-  .btn-primary:hover { background: #dfc07e; }
+  .btn:hover { background: var(--brand-2); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
   .btn-outline {
-    border: 1.5px solid var(--clr-accent);
-    color: var(--clr-accent);
-    background: transparent;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 2px solid #d1e3ff; color: var(--ink);
+    padding: 10px 18px; border-radius: var(--radius);
+    font-weight: 800; letter-spacing: .04em; font-size: 13px;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
   }
-  .btn-outline:hover {
-    background: var(--clr-accent);
-    color: #000;
-  }
+  .btn-outline:hover { background: #19356a; border-color: #19356a; transform: translateY(-1px); }
 
   /* ── Navigation ─────────────────────────────── */
-  .site-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    height: var(--nav-h);
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, background 0.3s;
+  .site-nav {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 16px 0;
   }
-  .site-header.scrolled {
-    border-bottom-color: var(--clr-border);
-    background: rgba(10,10,10,0.97);
+  .bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
   }
-  .nav-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 2rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .brand {
+    display: inline-flex; align-items: center; gap: 14px;
+    text-decoration: none; color: inherit;
   }
-  .nav-logo {
-    font-size: 1.1rem;
-    font-weight: 900;
-    letter-spacing: 0.06em;
+  .mark {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
   }
-  .logo-sherpa { color: var(--clr-text); }
-  .logo-media  { color: var(--clr-accent); }
+  .word { display: flex; flex-direction: column; line-height: 1; }
+  .word strong { font-size: 20px; letter-spacing: 6px; color: var(--ink); }
+  .word span { font-size: 10px; letter-spacing: 5px; color: #CBDFFF; }
 
   .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    display: none; align-items: center; gap: 28px;
+    color: var(--ink); font-size: 13px;
   }
-  .nav-links a {
-    color: var(--clr-muted);
-    transition: color 0.2s;
+  .nav-links a:not(.btn) {
+    opacity: .92; transition: opacity .15s ease, color .15s ease;
+    position: relative; display: inline-flex; align-items: center; padding-bottom: 6px;
   }
-  .nav-links a:hover { color: var(--clr-text); }
+  .nav-links a:hover { opacity: 1; color: #6aa4ff; }
 
-  /* ── Hamburger ───────────────────────────────── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
+  @media (min-width: 768px) {
+    .nav-links { display: flex; }
+    .menu-btn { display: none !important; }
   }
-  .hamburger span {
+
+  .menu-btn {
+    background: transparent; border: 0; color: white; cursor: pointer;
+    width: 44px; height: 44px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .menu-btn:hover { background: rgba(255,255,255,.06); }
+  .icon { width: 22px; height: 22px; display: block; }
+
+  /* ── Mobile drawer ───────────────────────────── */
+  .mobile-drawer {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    padding: 16px 24px 24px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .24s ease, visibility 0s linear .24s;
+  }
+  .mobile-drawer.open {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity .24s ease, visibility 0s linear 0s;
+  }
+  .mobile-drawer .top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .mobile-drawer .links {
+    display: flex; flex-direction: column; gap: 22px;
+    align-items: center; font-size: 18px;
+    opacity: 0; transition: opacity .24s ease;
+  }
+  .mobile-drawer.open .links { opacity: 1; }
+  .mobile-drawer .links a { opacity: .92; }
+  .mobile-drawer .links a:hover { opacity: 1; color: #6aa4ff; }
+  .mobile-drawer .links .btn { width: min(380px, 100%); margin-top: 8px; }
+
+  /* Footer mark uses logomark SVG */
+  .footer-mark {
+    background: url("/assets/img/brand/logomark-060d1b.svg") center/contain no-repeat;
     display: block;
-    width: 24px; height: 2px;
-    background: var(--clr-text);
-    transition: all 0.3s;
   }
-  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.active span:nth-child(2) { opacity: 0; }
-  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* ── Mobile nav ─────────────────────────────── */
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: var(--nav-h); left: 0; right: 0;
-    background: var(--clr-surface);
-    border-bottom: 1px solid var(--clr-border);
-    padding: 1.5rem 2rem 2rem;
-    z-index: 99;
-    transform: translateY(-10px);
-    opacity: 0;
-    transition: all 0.25s;
-  }
-  .mobile-nav.open {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .mobile-nav ul { display: flex; flex-direction: column; gap: 1.2rem; }
-  .mobile-nav a { font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; color: var(--clr-muted); }
-  .mobile-nav a:hover { color: var(--clr-text); }
-
-  /* ── Main content offset ────────────────────── */
-  #main-content { padding-top: var(--nav-h); }
 
   /* ── Footer ─────────────────────────────────── */
-  .site-footer {
-    border-top: 1px solid var(--clr-border);
-    padding: 4rem 2rem;
-    margin-top: 6rem;
+  footer {
+    background: var(--slate); color: #d2d9e7; padding: 64px 0;
   }
-  .footer-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    display: flex;
-    gap: 4rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  .footer-grid {
+    display: flex; flex-direction: column; gap: 36px;
   }
-  .footer-brand { max-width: 420px; }
-  .footer-brand p { color: var(--clr-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.7; }
-  .copyright { margin-top: 1.5rem !important; font-size: 0.8rem !important; }
-  .footer-nav h4 {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: var(--clr-muted);
-    margin-bottom: 1rem;
+  @media (min-width: 900px) {
+    .footer-grid { flex-direction: row; align-items: flex-start; justify-content: space-between; }
   }
-  .footer-nav ul { display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-nav a {
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--clr-muted);
-    transition: color 0.2s;
-  }
-  .footer-nav a:hover { color: var(--clr-text); }
+  .footer-left { max-width: 420px; }
+  .footer-left p { color: #ebebed; opacity: .95; font-size: 13px; line-height: 1.65; margin: 8px 0 0; }
+  .footer-left small { display: block; margin-top: 18px; opacity: .6; }
+  .footer-nav h4 { margin: 0 0 10px 0; color: white; font-weight: 900; letter-spacing: .04em; }
+  .footer-nav a { display: block; padding: 6px 0; opacity: .9; }
+  .footer-nav a:hover { opacity: 1; color: white; }
 
-  /* ── Responsive ─────────────────────────────── */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .mobile-nav { display: block; }
+  /* ── Section helper ─────────────────────────── */
+  .section { padding: 72px 0; }
+
+  /* ── Kicker / eyebrow ───────────────────────── */
+  .kicker {
+    margin: 0 0 10px 0;
+    text-transform: uppercase; letter-spacing: .11em;
+    font-size: 12px; font-weight: 800; color: #8eb8ff;
   }
+
+  /* ── Subpage title ──────────────────────────── */
+  .subpage-title { font-size: 48px; margin: 0 0 14px 0; font-weight: 900; }
+  @media (max-width: 700px) { .subpage-title { font-size: 36px; } }
 </style>
