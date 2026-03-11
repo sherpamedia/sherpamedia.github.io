@@ -41,7 +41,7 @@ const logoSVGPath = "M21.9453 29.9521C22.2077 29.9522 22.4238 30.1653 22.4238 30
 
   <body>
     <!-- Navigation -->
-    <header>
+    <header transition:persist>
       <nav class="site-nav">
         <div class="container bar">
           <a class="brand" href="/" aria-label="Sherpa Media Home">
@@ -180,7 +180,14 @@ const logoSVGPath = "M21.9453 29.9521C22.2077 29.9522 22.4238 30.1653 22.4238 30
     --radius: 6px;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+
+  /* ── View Transitions: kill the root cross-fade so only <main> fades ── */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
 
   body {
     background: var(--bg);
