@@ -41,7 +41,7 @@ const logoSVGPath = "M21.9453 29.9521C22.2077 29.9522 22.4238 30.1653 22.4238 30
 
   <body>
     <!-- Navigation -->
-    <header transition:persist>
+    <header transition:persist="site-header">
       <nav class="site-nav">
         <div class="container bar">
           <a class="brand" href="/" aria-label="Sherpa Media Home">
@@ -182,9 +182,16 @@ const logoSVGPath = "M21.9453 29.9521C22.2077 29.9522 22.4238 30.1653 22.4238 30
 
   html { scroll-behavior: smooth; background: var(--bg); }
 
-  /* ── View Transitions: kill the root cross-fade so only <main> fades ── */
+  /* ── View Transitions ───────────────────────────────────────────────── */
+  /* Kill root cross-fade — only <main> should fade */
   ::view-transition-old(root),
   ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  /* Kill header's own transition group so it never animates */
+  ::view-transition-old(site-header),
+  ::view-transition-new(site-header) {
     animation: none;
     mix-blend-mode: normal;
   }
