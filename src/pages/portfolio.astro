@@ -1,0 +1,102 @@
+---
+// src/pages/portfolio.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const portfolio = [
+  { name: "Grant Cardone",          img: "Grand-Cardone.jpg" },
+  { name: "Justin Baldoni",         img: "Justin-Baldoni.jpg" },
+  { name: "David Coulthard",        img: "David-Coulthard.jpg" },
+  { name: "Robin Sharma",           img: "Robin-Sharma.jpg" },
+  { name: "Russell Peters",         img: "Russell-Peters.jpg" },
+  { name: "P. K. Subban",           img: "PK-Subban.jpg" },
+  { name: "Georges St-Pierre",      img: "Georges-St-Pierre.jpg" },
+  { name: "Ulrich Larsen",          img: "Ulrich-Larsen.jpg" },
+  { name: "Brendan Brown (Wheatus)",img: "Wheatus.jpg" },
+  { name: "Matteo Mancuso",         img: "Matteo-Mancuso.jpg" },
+];
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="Sherpa Media's portfolio of recognized voices and notable podcast clients."
+>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Recognized Voices</h1>
+      <p class="sub">
+        We've worked with world-class leaders, athletes, entertainers, and brands
+        to amplify their message through premium podcast production.
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <div class="portfolio-inner">
+      <div class="portfolio-grid">
+        {portfolio.map((p) => (
+          <div class="portfolio-card">
+            <img
+              src={`/assets/img/portfolio/${p.img}`}
+              alt={p.name}
+              loading="lazy"
+              width="320"
+              height="380"
+            />
+            <div class="card-overlay">
+              <span>{p.name.toUpperCase()}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 7rem 2rem 4rem; text-align: center;
+    border-bottom: 1px solid var(--clr-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.8rem;
+  }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
+  .sub { color: var(--clr-muted); font-size: 1.05rem; line-height: 1.7; }
+
+  .portfolio-section { padding: 5rem 2rem; }
+  .portfolio-inner { max-width: var(--max-w); margin: 0 auto; }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .portfolio-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: var(--clr-surface);
+    cursor: default;
+  }
+  .portfolio-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .portfolio-card:hover img { transform: scale(1.06); }
+  .card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent 0%, rgba(0,0,0,0.88) 100%);
+    padding: 2.5rem 1rem 1rem;
+    transition: opacity 0.3s;
+  }
+  .card-overlay span {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--clr-text);
+  }
+</style>

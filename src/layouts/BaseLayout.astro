@@ -1,0 +1,332 @@
+---
+// src/layouts/BaseLayout.astro
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "Sherpa Media is a full-service podcast agency." } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title} — Sherpa Media</title>
+
+    <!-- View Transitions: enables SPA-like page changes without full reload -->
+    <meta name="astro-view-transitions" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <header class="site-header" id="site-header">
+      <nav class="nav-inner">
+        <a href="/" class="nav-logo" aria-label="Sherpa Media Home">
+          <span class="logo-sherpa">SHERPA</span><span class="logo-media">MEDIA</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <ul class="nav-links" role="list">
+          <li><a href="/service/">SERVICE</a></li>
+          <li><a href="/portfolio/">PORTFOLIO</a></li>
+          <li><a href="/case-studies/">CASE STUDIES</a></li>
+          <li><a href="/about/">ABOUT</a></li>
+          <li>
+            <a
+              href="https://calendly.com/production-sherpamedia/30min"
+              class="btn btn-outline"
+              target="_blank"
+              rel="noopener">BOOK A CALL</a
+            >
+          </li>
+        </ul>
+
+        <!-- Mobile hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+
+      <!-- Mobile drawer -->
+      <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <ul role="list">
+          <li><a href="/service/">SERVICE</a></li>
+          <li><a href="/portfolio/">PORTFOLIO</a></li>
+          <li><a href="/case-studies/">CASE STUDIES</a></li>
+          <li><a href="/about/">ABOUT</a></li>
+          <li>
+            <a
+              href="https://calendly.com/production-sherpamedia/30min"
+              class="btn btn-outline"
+              target="_blank"
+              rel="noopener">BOOK A CALL</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Page content (View Transitions animates this) -->
+    <main id="main-content" transition:animate="fade">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <span class="logo-sherpa">SHERPA</span><span class="logo-media">MEDIA</span>
+          </a>
+          <p>Sherpa Media is a full-service podcast agency that makes it easy for brands to create, launch and grow successful podcasts.</p>
+          <p class="copyright">©2026 Sherpa Media LLC</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <h4>NAVIGATION</h4>
+          <ul role="list">
+            <li><a href="/service/">SERVICE</a></li>
+            <li><a href="/portfolio/">PORTFOLIO</a></li>
+            <li><a href="/case-studies/">CASE STUDIES</a></li>
+            <li><a href="/about/">ABOUT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Mobile menu script (tiny, inline) -->
+    <script>
+      const hamburger = document.getElementById("hamburger")!;
+      const mobileNav = document.getElementById("mobile-nav")!;
+
+      hamburger.addEventListener("click", () => {
+        const open = hamburger.getAttribute("aria-expanded") === "true";
+        hamburger.setAttribute("aria-expanded", String(!open));
+        mobileNav.setAttribute("aria-hidden", String(open));
+        mobileNav.classList.toggle("open");
+        hamburger.classList.toggle("active");
+      });
+
+      // Close mobile nav on link click
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileNav.setAttribute("aria-hidden", "true");
+          mobileNav.classList.remove("open");
+          hamburger.classList.remove("active");
+        });
+      });
+
+      // Sticky header shrink on scroll
+      const header = document.getElementById("site-header")!;
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 40);
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* ── Reset & tokens ─────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --clr-bg: #0a0a0a;
+    --clr-surface: #111111;
+    --clr-border: #1e1e1e;
+    --clr-text: #f0f0f0;
+    --clr-muted: #888;
+    --clr-accent: #c8a96e;   /* gold */
+    --clr-accent-dim: rgba(200,169,110,0.15);
+    --font: "Inter", system-ui, sans-serif;
+    --nav-h: 72px;
+    --radius: 6px;
+    --max-w: 1200px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  ul[role="list"] { list-style: none; }
+
+  /* ── Buttons ────────────────────────────────── */
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--clr-accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #dfc07e; }
+  .btn-outline {
+    border: 1.5px solid var(--clr-accent);
+    color: var(--clr-accent);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--clr-accent);
+    color: #000;
+  }
+
+  /* ── Navigation ─────────────────────────────── */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .site-header.scrolled {
+    border-bottom-color: var(--clr-border);
+    background: rgba(10,10,10,0.97);
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+  }
+  .logo-sherpa { color: var(--clr-text); }
+  .logo-media  { color: var(--clr-accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  .nav-links a {
+    color: var(--clr-muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--clr-text); }
+
+  /* ── Hamburger ───────────────────────────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--clr-text);
+    transition: all 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Mobile nav ─────────────────────────────── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: var(--nav-h); left: 0; right: 0;
+    background: var(--clr-surface);
+    border-bottom: 1px solid var(--clr-border);
+    padding: 1.5rem 2rem 2rem;
+    z-index: 99;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.25s;
+  }
+  .mobile-nav.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-nav ul { display: flex; flex-direction: column; gap: 1.2rem; }
+  .mobile-nav a { font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; color: var(--clr-muted); }
+  .mobile-nav a:hover { color: var(--clr-text); }
+
+  /* ── Main content offset ────────────────────── */
+  #main-content { padding-top: var(--nav-h); }
+
+  /* ── Footer ─────────────────────────────────── */
+  .site-footer {
+    border-top: 1px solid var(--clr-border);
+    padding: 4rem 2rem;
+    margin-top: 6rem;
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .footer-brand { max-width: 420px; }
+  .footer-brand p { color: var(--clr-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.7; }
+  .copyright { margin-top: 1.5rem !important; font-size: 0.8rem !important; }
+  .footer-nav h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--clr-muted);
+    margin-bottom: 1rem;
+  }
+  .footer-nav ul { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-nav a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--clr-muted);
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: var(--clr-text); }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: block; }
+  }
+</style>

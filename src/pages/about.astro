@@ -1,0 +1,95 @@
+---
+// src/pages/about.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
+---
+
+<BaseLayout
+  title="About"
+  description="Sherpa Media guides brands to new heights through strategy, content, and podcast production."
+>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1>About Sherpa Media</h1>
+    </div>
+  </section>
+
+  <section class="about-body">
+    <div class="about-inner">
+      <div class="about-text">
+        <p>
+          At Sherpa Media, our name reflects how we work with our clients. Just like a sherpa
+          guides climbers to the summit through preparation, resilience, and relentless support,
+          we believe in hard work, dedication, and going all in to achieve meaningful results.
+          Our mission is to elevate brands to new heights, helping them navigate their content
+          journey with clarity, strategy, and a team committed to reaching the summit together.
+        </p>
+        <p>
+          Whether you're a company with an internal or external podcast, or a coach or creator
+          using your podcast as a magnet for new clients, we ensure every episode works harder
+          for your business. Our expertise turns conversations into content that resonates,
+          engages, and converts.
+        </p>
+        <p>
+          We're proud to partner with industry leaders, helping them amplify their voice, drive
+          meaningful engagement, and achieve measurable results. With Sherpa Media, your podcast
+          becomes more than a show — it becomes a strategic marketing tool that grows your brand.
+        </p>
+
+        <div class="mission-block">
+          <h2>Mission</h2>
+          <p>
+            Our mission is to unlock the full potential of every voice, helping businesses and
+            creators share their message with audiences they've only dreamed of reaching. We
+            strive to turn podcasts into powerful catalysts for growth, connection, and impact,
+            amplifying ideas that inspire, engage, and transform.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="page-cta-inner">
+      <h2>Carry your story further</h2>
+      <p>
+        If you're serious about using podcasting as a long-term growth and impact channel,
+        we'd love to help.
+      </p>
+      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--clr-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; }
+
+  .about-body { padding: 5rem 2rem; }
+  .about-inner { max-width: 760px; margin: 0 auto; }
+  .about-text p {
+    color: var(--clr-muted); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem;
+  }
+  .mission-block {
+    margin-top: 3rem; padding: 2.5rem;
+    border: 1px solid var(--clr-border);
+    border-left: 3px solid var(--clr-accent);
+    border-radius: var(--radius);
+    background: var(--clr-surface);
+  }
+  .mission-block h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
+  .mission-block p { margin-bottom: 0; }
+
+  .page-cta {
+    border-top: 1px solid var(--clr-border); padding: 5rem 2rem; text-align: center;
+  }
+  .page-cta-inner { max-width: 600px; margin: 0 auto; }
+  .page-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.8rem; }
+  .page-cta p { color: var(--clr-muted); margin-bottom: 2rem; }
+</style>

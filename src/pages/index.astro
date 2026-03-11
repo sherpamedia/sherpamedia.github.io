@@ -1,0 +1,221 @@
+---
+// src/pages/index.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
+
+const logos = [
+  "dunkin-logo.svg","hp-logo.svg","ingram-logo.svg","cirque-du-soleil-logo.svg",
+  "loreal-logo.svg","tropicana-logo.svg","kenneth-cole-logo.svg","pipedrive-logo.svg",
+  "honeywell-logo.svg","savannah-bananas-logo.svg","skullcandy-logo.svg","icee-logo.svg",
+  "quantum-logo.svg","paysafe-logo.svg","chomps-logo.svg","cameo-logo.svg",
+  "dude-wipes-logo.svg","cyara-logo.svg","dell-logo.svg","rldatix-logo.svg",
+  "pattern-logo.svg","genpact-logo.svg","bran-capital-logo.svg","hexaware-logo.svg",
+  "techstars-logo.svg","defy-logo.svg","makena-logo.svg","andreessen-horowitz-logo.svg",
+  "betmgm-logo.png","hometown-logo.png",
+];
+
+const portfolio = [
+  { name: "GRANT CARDONE",         img: "Grand-Cardone.jpg" },
+  { name: "JUSTIN BALDONI",        img: "Justin-Baldoni.jpg" },
+  { name: "DAVID COULTHARD",       img: "David-Coulthard.jpg" },
+  { name: "ROBIN SHARMA",          img: "Robin-Sharma.jpg" },
+  { name: "RUSSELL PETERS",        img: "Russell-Peters.jpg" },
+  { name: "P. K. SUBBAN",          img: "PK-Subban.jpg" },
+  { name: "GEORGES ST-PIERRE",     img: "Georges-St-Pierre.jpg" },
+  { name: "ULRICH LARSEN",         img: "Ulrich-Larsen.jpg" },
+  { name: "BRENDAN BROWN (WHEATUS)",img: "Wheatus.jpg" },
+  { name: "MATTEO MANCUSO",        img: "Matteo-Mancuso.jpg" },
+];
+---
+
+<BaseLayout title="Turn Your Content Into a Strategic Lead Magnet">
+  <!-- ── Hero ─────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Turn Your Content Into a Strategic Lead Magnet</h1>
+      <p>
+        We use audience insights and brand strategy to craft research-backed content
+        that attracts the right prospects, builds authority, and helps you convert
+        listeners into clients.
+      </p>
+      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+    </div>
+  </section>
+
+  <!-- ── Trusted Brands ───────────────────────────── -->
+  <section class="brands">
+    <div class="section-inner">
+      <h2 class="section-label">Trusted by Leading Brands</h2>
+      <div class="logo-grid">
+        {logos.map((logo) => (
+          <div class="logo-cell">
+            <img
+              src={`/assets/img/logos/${logo}`}
+              alt={logo.replace(/-logo\.(svg|png)$/, "").replace(/-/g, " ")}
+              loading="lazy"
+              width="120"
+              height="40"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recognized Voices / Portfolio ────────────── -->
+  <section class="voices">
+    <div class="section-inner">
+      <h2 class="section-label">Recognized Voices</h2>
+      <div class="portfolio-grid">
+        {portfolio.map((p) => (
+          <div class="portfolio-card">
+            <img
+              src={`/assets/img/portfolio/${p.img}`}
+              alt={p.name}
+              loading="lazy"
+              width="280"
+              height="320"
+            />
+            <span>{p.name}</span>
+          </div>
+        ))}
+      </div>
+      <div class="center-cta">
+        <a href="/portfolio/" class="btn btn-outline">VIEW FULL PORTFOLIO</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Award CTA ─────────────────────────────────── -->
+  <section class="award-block">
+    <div class="section-inner award-inner">
+      <div class="award-text">
+        <img src="/assets/img/podcasts/ceo-tech-live.jpg" alt="CEO Tech Live podcast" width="80" height="80" />
+        <img src="/assets/img/awards/marcom-hexaware.png" alt="MarCom Gold Award" width="80" height="80" />
+        <p>
+          <strong>CEO TECH LIVE by HEXAWARE wins GOLD at the MARCOM AWARDS</strong><br />
+          out of <strong>325,000+</strong> AMCP Entries
+        </p>
+      </div>
+      <a href="/case-studies/" class="btn btn-outline">READ OUR CASE STUDIES</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Hero ─────────────────────────────────── */
+  .hero {
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 2rem 4rem;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,169,110,0.08) 0%, transparent 70%),
+      var(--clr-bg);
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--clr-muted);
+    max-width: 600px;
+    margin: 0 auto 2.4rem;
+    line-height: 1.7;
+  }
+
+  /* ── Sections ─────────────────────────────── */
+  .section-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clr-muted);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  /* ── Logo grid ────────────────────────────── */
+  .brands { border-top: 1px solid var(--clr-border); }
+  .logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-cell img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(0.55);
+    transition: filter 0.2s;
+  }
+  .logo-cell img:hover { filter: brightness(0) invert(0.9); }
+
+  /* ── Portfolio grid ───────────────────────── */
+  .voices { border-top: 1px solid var(--clr-border); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .portfolio-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--clr-surface);
+  }
+  .portfolio-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .portfolio-card:hover img { transform: scale(1.04); }
+  .portfolio-card span {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    padding: 1.5rem 0.8rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .center-cta { text-align: center; }
+
+  /* ── Award block ──────────────────────────── */
+  .award-block { border-top: 1px solid var(--clr-border); }
+  .award-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .award-text {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .award-text img { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; }
+  .award-text p { font-size: 0.95rem; color: var(--clr-muted); max-width: 480px; }
+  .award-text strong { color: var(--clr-text); }
+</style>

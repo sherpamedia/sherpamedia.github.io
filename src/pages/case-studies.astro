@@ -1,0 +1,150 @@
+---
+// src/pages/case-studies.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
+
+// In the CMS-driven version these come from Tina content.
+// For now they're typed inline — easy to move to MDX files via Tina.
+const studies = [
+  {
+    slug: "hexaware",
+    client: "Hexaware",
+    title: "CEO TECH LIVE by HEXAWARE wins GOLD at the MARCOM AWARDS",
+    award: "out of 325,000+ AMCP Entries",
+    podcastImg: "/assets/img/podcasts/ceo-tech-live.jpg",
+    awardBadge: "/assets/img/awards/marcom-hexaware.png",
+    videoUrl: "/assets/videos/case-study-hexaware.mp4",
+    goal: "Hexaware needed a way to highlight executives from organizations that have partnered with them for professional services and skilled talent solutions, demonstrating the real operational impact of those collaborations. Together, we identified a podcast series as the most effective format to create space for meaningful leadership conversations and authentic industry insights.",
+    role: "For the past two seasons with a third on the way, Sherpa Media has worked closely with Hexaware to shape and elevate the show's video presence. We transformed executive conversations into engaging, brand-aligned content, handling editing, visual storytelling, and optimization for digital platforms. The series is produced in collaboration with renowned host, leadership speaker, and long-term Sherpa Media client Ben Fanning, ensuring thoughtful and consistent executive dialogue.",
+    impact: "The podcast recently earned Gold at the 2025 MarCom Awards, recognized for Industry-Focused Series excellence. The recognition reflects what happens when the right leaders come together for meaningful executive dialogue: conversations that are thoughtful, impactful, and never rushed.",
+  },
+  {
+    slug: "fidium",
+    client: "Fidium Fiber",
+    title: "Fidium Fiber Rebrand",
+    award: "Entering the fiber internet market with ease",
+    podcastImg: "/assets/img/podcasts/fidium.jpg",
+    awardBadge: null,
+    videoUrl: "/assets/videos/case-study-fidium.mp4",
+    goal: "As a legacy telecommunications company entering the fiber internet market, Fidium Fiber needed to introduce a new brand while building trust in rural American communities that have historically been underserved by high-speed infrastructure. The rebrand messaging needed to resonate with investors, future customers, and employees, creating confidence both externally and internally.",
+    role: "Sherpa Media partnered with Fidium Fiber to bring the rebrand to life through video storytelling. We developed the #BreakthroughLeaders series, producing an 8-episode executive video series, 40 employee testimonial videos, and a brand overview video that captured leadership vision and the people behind the service. By showcasing voices across the organization from executives to installers, the content helped communicate Fidium's transition into a fiber-focused provider committed to connecting rural communities.",
+    impact: "Strategic video storytelling positioned Fidium Fiber as a trusted, human-centered brand, supporting employee alignment, investor confidence, and stronger connection with new customers during the rebrand.",
+  },
+];
+---
+
+<BaseLayout
+  title="Case Studies"
+  description="Explore how Sherpa Media turns podcast strategy into measurable growth."
+>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Case Studies</p>
+      <h1>Case Studies</h1>
+      <p class="sub">
+        Explore how we turn podcast strategy into measurable growth through editing,
+        distribution, and content repurposing.
+      </p>
+    </div>
+  </section>
+
+  <section class="studies-section">
+    <div class="studies-inner">
+      {studies.map((s) => (
+        <article class="study-card" id={s.slug}>
+          {s.videoUrl && (
+            <div class="study-video">
+              <video controls preload="none" poster={s.podcastImg}>
+                <source src={s.videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          )}
+
+          <div class="study-meta">
+            <img src={s.podcastImg} alt={`${s.client} podcast`} width="72" height="72" />
+            {s.awardBadge && (
+              <img src={s.awardBadge} alt="Award badge" width="72" height="72" />
+            )}
+          </div>
+
+          <h2>{s.title}</h2>
+          {s.award && <p class="award-label">{s.award}</p>}
+
+          <div class="study-sections">
+            <div class="study-section">
+              <h3>The Goal</h3>
+              <p>{s.goal}</p>
+            </div>
+            <div class="study-section">
+              <h3>Our Role</h3>
+              <p>{s.role}</p>
+            </div>
+            <div class="study-section">
+              <h3>The Impact</h3>
+              <p>{s.impact}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="page-cta-inner">
+      <h2>Ready to create your success story?</h2>
+      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 7rem 2rem 4rem; text-align: center;
+    border-bottom: 1px solid var(--clr-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.8rem;
+  }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
+  .sub { color: var(--clr-muted); font-size: 1.05rem; line-height: 1.7; }
+
+  .studies-section { padding: 5rem 2rem; }
+  .studies-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 5rem; }
+
+  .study-card { border-bottom: 1px solid var(--clr-border); padding-bottom: 5rem; }
+  .study-card:last-child { border-bottom: none; }
+
+  .study-video {
+    border-radius: var(--radius); overflow: hidden;
+    margin-bottom: 1.5rem; background: var(--clr-surface);
+    aspect-ratio: 16/9;
+  }
+  .study-video video { width: 100%; height: 100%; object-fit: cover; }
+
+  .study-meta {
+    display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;
+  }
+  .study-meta img { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; }
+
+  .study-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .award-label {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--clr-accent); text-transform: uppercase; margin-bottom: 2rem;
+  }
+
+  .study-sections { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
+  .study-section h3 {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 0.5rem;
+  }
+  .study-section p { color: var(--clr-muted); line-height: 1.8; }
+
+  .page-cta { border-top: 1px solid var(--clr-border); padding: 5rem 2rem; text-align: center; }
+  .page-cta-inner { max-width: 600px; margin: 0 auto; }
+  .page-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; }
+</style>

@@ -1,0 +1,112 @@
+---
+// src/pages/service.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+const calendlyUrl = "https://calendly.com/production-sherpamedia/30min";
+
+const steps = [
+  {
+    label: "Step 1",
+    title: "Discovery",
+    body: "We dive deep into your business, brand, and existing content to understand what is working, what is not, and who your ideal audience is. Using these insights, we identify opportunities to create content that truly resonates and attracts the right prospects.",
+  },
+  {
+    label: "Step 2",
+    title: "Strategy & Solution",
+    body: "Based on our research, we develop a tailored content plan that outlines the key pieces you need and how to leverage them for maximum impact, turning your content into a structured, audience-targeted lead magnet. As part of this, we also define the scope of our work and provide clear pricing.",
+  },
+  {
+    label: "Step 3",
+    title: "Content Creation",
+    body: "With the strategy in place, we help you record and produce each piece, then handle all post-production editing. Every asset is polished, on-brand, and optimized to engage your audience across the channels that matter most.",
+  },
+];
+---
+
+<BaseLayout
+  title="Service"
+  description="A clear 3-step content system: Discovery, Strategy, and Content Creation by Sherpa Media."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Service</p>
+      <h1>A Clear 3-Step Content System</h1>
+      <p class="sub">
+        We turn your content workflow into a structured lead engine — from audience
+        insight to polished, channel-ready assets.
+      </p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="steps-section">
+    <div class="steps-inner">
+      {steps.map((step, i) => (
+        <div class="step-card">
+          <div class="step-number">{step.label}</div>
+          <h2>{step.title}</h2>
+          <p>{step.body}</p>
+          {i < steps.length - 1 && <div class="step-connector" aria-hidden="true" />}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page-cta">
+    <div class="page-cta-inner">
+      <h2>Ready to build your content engine?</h2>
+      <a href={calendlyUrl} class="btn btn-primary" target="_blank" rel="noopener">BOOK A CALL</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 7rem 2rem 4rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%),
+      var(--clr-bg);
+    text-align: center;
+    border-bottom: 1px solid var(--clr-border);
+  }
+  .page-hero-inner { max-width: 700px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--clr-accent); margin-bottom: 1rem;
+  }
+  .page-hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem;
+  }
+  .sub { color: var(--clr-muted); font-size: 1.1rem; line-height: 1.7; }
+
+  .steps-section { padding: 5rem 2rem; }
+  .steps-inner {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .step-card {
+    position: relative;
+    padding: 2.5rem 2.5rem 2.5rem 5rem;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    background: var(--clr-surface);
+    margin-bottom: 2rem;
+  }
+  .step-number {
+    position: absolute; left: 1.8rem; top: 2.5rem;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--clr-accent);
+  }
+  .step-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.8rem; }
+  .step-card p { color: var(--clr-muted); line-height: 1.75; }
+
+  .page-cta {
+    border-top: 1px solid var(--clr-border);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .page-cta-inner { max-width: 600px; margin: 0 auto; }
+  .page-cta h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; }
+</style>

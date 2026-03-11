@@ -1,0 +1,22 @@
+{
+  "name": "sherpamedia",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "tinacms": "tinacms dev -c \"astro dev\""
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.5",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^4.16.0",
+    "tinacms": "^2.6.2",
+    "@tinacms/auth": "^1.0.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# Environment variables (NEVER commit these)
+.env
+.env.local
+.env.*.local
+
+# TinaCMS generated files (auto-generated at build time)
+tina/__generated__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
